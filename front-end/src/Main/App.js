@@ -1,11 +1,7 @@
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
+export default props =>
+<div className="App">
 
-    </div>
-  );
-}
+</div>
 
-export default App;
