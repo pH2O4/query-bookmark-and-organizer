@@ -1,17 +1,18 @@
-import { React, Component } from "react";
+import { React, Component, useState } from "react";
 import Axios from 'axios'
 import { } from 'react-bootstrap'
 import './Login.css'
-export default class LoginPage extends Component {
 
-    render() {
-        const [valuesLogin, setValuesLogin] = useState();
+const LoginPage = () => {
+ const [valuesLogin, setValuesLogin] = useState();
   const ChangingValueLogin = (valueLogin) => {
     setValuesLogin((prevValueLogin) => ({
       ...prevValueLogin,
-      [valueLogin.target.name]: valueP.target.value,
+      [valueLogin.target.name]: valueLogin.target.value,
     }));
   };
+
+       
         return (
             <div className="LoginPage">
                 <form>
@@ -34,5 +35,6 @@ export default class LoginPage extends Component {
                 </form>
             </div>
         )
-    }
+    
 }
+export default LoginPage
