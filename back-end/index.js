@@ -1,5 +1,4 @@
 const express = require("express");
-const Puppeteer = require('puppeteer');
 const cors = require('cors');
 const app = express();
 
@@ -8,7 +7,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
-app.get('/', function (req, res) {
+app.post('/Login', function (req, res) {
     res.send('Hello World')
 })
 
