@@ -17,6 +17,7 @@ const LoginPage = () => {
         Email: valuesLogin.Email,
         Pass: valuesLogin.Pass
     } ).then((response) => {
+      console.log(response.data)
     })
   }
         return (
@@ -37,7 +38,7 @@ const LoginPage = () => {
 
 
                     <button onClick={() => DoingLogin} className="btn btn-dark btn-lg btn-block">Sign in</button>
-                <p id="forgetPass">Esqueceu sua senha? <a href="">Recuperar</a></p>
+                <p id="forgetPass">Esqueceu sua senha? <a href="/">Recuperar</a></p>
                 </form>
             </div>
         )
