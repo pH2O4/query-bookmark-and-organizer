@@ -13,7 +13,7 @@ const LoginPage = () => {
   };
 
   const DoingLogin = () => {
-    Axios.post( 'http://localhost:8080/Login',{
+    Axios.get('http://localhost:8080/Login',{
         Email: valuesLogin.Email,
         Pass: valuesLogin.Pass
     } ).then((response) => {
@@ -37,7 +37,7 @@ const LoginPage = () => {
                     </div>
 
 
-                    <button onClick={() => DoingLogin} className="btn btn-dark btn-lg btn-block">Sign in</button>
+                    <button onClick={() => DoingLogin} className=" btn-dark btn-lg btn-block">Sign in</button>
                 <p id="forgetPass">Esqueceu sua senha? <a href="/">Recuperar</a></p>
                 </form>
             </div>
