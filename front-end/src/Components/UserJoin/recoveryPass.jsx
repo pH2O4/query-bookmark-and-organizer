@@ -22,7 +22,7 @@ const RecoveryPassPage = () => {
      }
            return (
                <div className="LoginPage">
-                   <form>
+                   <div className="form">
    
                        <h3>Seja Bem Vindo A Equipe Passos!</h3>
    
@@ -39,7 +39,7 @@ const RecoveryPassPage = () => {
    
                        <button onClick={() => RecoveringPass()} className="btn btn-dark btn-lg btn-block">Sign in</button>
                    <p id="forgetPass">Esqueceu sua senha? <a href="/Recovery">Recuperar</a></p>
-                   </form>
+                   </div>
                </div>
            )
        

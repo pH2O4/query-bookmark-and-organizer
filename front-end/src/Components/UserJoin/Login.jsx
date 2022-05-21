@@ -13,7 +13,8 @@ const LoginPage = () => {
   };
 
   const DoingLogin = () => {
-    Axios.get('http://localhost:8080/Login',{
+    console.log('kkk')
+    Axios.post('http://localhost:8080/Login',{
         Email: valuesLogin.Email,
         Pass: valuesLogin.Pass
     } ).then((response) => {
@@ -22,24 +23,24 @@ const LoginPage = () => {
   }
         return (
             <div className="LoginPage">
-                <form>
+                <div className="form" >
 
                     <h3>Seja Bem Vindo A Equipe Passos!</h3>
 
                     <div className="form-group">
                         <label>Email</label>
-                        <input type="Email" onChange={() => ChangingValueLogin } name="Email" className="form-control" placeholder="Enter email" />
+                        <input type="Email" onChange={ ChangingValueLogin} name="Email" className="form-control" placeholder="Enter email" />
                     </div>
 
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="Pass" onChange={() => ChangingValueLogin } name="Pass" className="form-control" placeholder="Enter password" />
+                        <input type="Pass" onChange={ChangingValueLogin} name="Pass" className="form-control" placeholder="Enter password" />
                     </div>
 
 
-                    <button onClick={() => DoingLogin} className=" btn-dark btn-lg btn-block">Sign in</button>
+                    <button onClick={() => DoingLogin()} className=" btn-dark btn-lg btn-block">Sign in</button>
                 <p id="forgetPass">Esqueceu sua senha? <a href="/">Recuperar</a></p>
-                </form>
+                </div>
             </div>
         )
     

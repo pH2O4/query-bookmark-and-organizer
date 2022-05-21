@@ -1,11 +1,13 @@
 const express = require("express");
 const cors = require('cors');
 const app = express();
-
+const {PrismaClient} = require('@prisma/client')
+const jwt = require('jsonwebtoken')
 
 app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+const prisma = new PrismaClient()
 
 
 const middlewareValidarJWT = (req, res, next) => {
@@ -35,7 +37,7 @@ app.post('/Login', async (req, res) =>{
     })
       if(user.Email == Email & user.Pass == Pass){
     const chavePrivada = "ti%aoxrjwKBB7ex@rDJDst@Cw@ioCqx!SR^oo"
-    jwt.sign(dadosUsuario, chavePrivada, (err, token) => {
+    jwt.sign(user, chavePrivada, (err, token) => {
       if (err) {
           res
               .status(500)
@@ -50,7 +52,7 @@ app.post('/Login', async (req, res) =>{
   });
 } else {
   res.status(401);
-  res.send('skaks')
+  res.send('skaks2')
   res.end();
 }})
 
