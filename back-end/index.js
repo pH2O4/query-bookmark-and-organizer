@@ -1,29 +1,34 @@
-const express = require("express");
-const cors = require('cors');
-const app = express();
+const express = require("express")
+const cors = require('cors')
+const app = express()
 const {PrismaClient} = require('@prisma/client')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+
 
 app.use(cors())
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }))
 const prisma = new PrismaClient()
 
 
-const middlewareValidarJWT = (req, res, next) => {
-    const jwt = req.headers["authorization"];
-    const chavePrivada = "ti%aoxrjwKBB7ex@rDJDst@Cw@ioCqx!SR^oo";
-
-    // Efetuando a validação do JWT:
-    const jwtService = require("jsonwebtoken");
+const middlewareCheckJWT = async (req, res, next) => {
+    const jwt = req.headers["authorization"]
+    const chavePrivada = "ti%aoxrjwKBB7ex@rDJDst@Cw@ioCqx!SR^oo"
+    const userInfo = await prisma.user.findUnique({
+      where: {
+        Email: Email,
+      },
+    })
+    const jwtService = require("jsonwebtoken")
     jwtService.verify(jwt, chavePrivada, (err, userInfo) => {
         if (err) {
-            res.status(403).end();
+            res.status(403).end()
             return;
         }
-
-        req.userInfo = userInfo;
-        next();
+        
+        req.userInfo = userInfo
+        next()
     });
 };
 
@@ -38,6 +43,7 @@ app.post('/Login', async (req, res) =>{
       if(user.Email == Email & user.Pass == Pass){
     const chavePrivada = "ti%aoxrjwKBB7ex@rDJDst@Cw@ioCqx!SR^oo"
     jwt.sign(user, chavePrivada, (err, token) => {
+      
       if (err) {
           res
               .status(500)
@@ -45,18 +51,41 @@ app.post('/Login', async (req, res) =>{
 
           return;
       }
-
+      expiresIn: 300000
       res.set("x-access-token", token);
-      res.send('skaks')
+      res.send(true)
       res.end();
   });
 } else {
   res.status(401);
-  res.send('skaks2')
+  res.send(false)
   res.end();
 }})
 
+app.post('/Recovery', async(req, res) => {
+  const Email = req.body.Email
+  const Pass = req.body.Pass
+  const PassRepeat = req.body.PassRepeat
+  if(Pass != PassRepeat){
+    res.send("Passwords don't check")
+  }else{
+    const updateUser = await prisma.user.update({
+      where: {
+        Email: Email,
+      },
+      data: {
+        Pass: Pass,
+      },
+    })
+  }
+  res.send('Password Changed')
+}) 
+
+app.get('/AuthStatus',middlewareCheckJWT ,  (req, res) => {
+  res.json(req.userInfo)
+})
+
 const PORT = 8080;
 app.listen(PORT, () => {
-    console.log(`Running in http://localhost:${PORT}`);
+    console.log(`Running in http://localhost:${PORT}`)
 })

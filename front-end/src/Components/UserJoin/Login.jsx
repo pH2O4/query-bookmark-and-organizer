@@ -13,12 +13,15 @@ const LoginPage = () => {
   };
 
   const DoingLogin = () => {
-    console.log('kkk')
     Axios.post('http://localhost:8080/Login',{
         Email: valuesLogin.Email,
         Pass: valuesLogin.Pass
     } ).then((response) => {
-      console.log(response.data)
+     if(response.data == true){
+      window.location.href ='http://localhost:3000/Home'
+     }else{
+       window.alert('Please, chek your login informations')
+     }
     })
   }
         return (
@@ -39,7 +42,7 @@ const LoginPage = () => {
 
 
                     <button onClick={() => DoingLogin()} className=" btn-dark btn-lg btn-block">Sign in</button>
-                <p id="forgetPass">Esqueceu sua senha? <a href="/">Recuperar</a></p>
+                <p id="forgetPass">Esqueceu sua senha? <a href="/Recovery">Recuperar</a></p>
                 </div>
             </div>
         )
