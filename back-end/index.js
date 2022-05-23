@@ -13,20 +13,16 @@ const prisma = new PrismaClient()
 
 
 const middlewareCheckJWT = async (req, res, next) => {
-    const jwt = req.headers["authorization"]
+    const jwtFromFrontEnd = req.headers["authorization"]
+    console.log(jwtFromFrontEnd)
     const chavePrivada = "ti%aoxrjwKBB7ex@rDJDst@Cw@ioCqx!SR^oo"
-    const userInfo = await prisma.user.findUnique({
-      where: {
-        Email: Email,
-      },
-    })
     const jwtService = require("jsonwebtoken")
-    jwtService.verify(jwt, chavePrivada, (err, userInfo) => {
+    jwtService.verify(jwtFromFrontEnd, chavePrivada, (err, userInfo) => {
         if (err) {
             res.status(403).end()
             return;
         }
-        
+
         req.userInfo = userInfo
         next()
     });
@@ -35,31 +31,31 @@ const middlewareCheckJWT = async (req, res, next) => {
 app.post('/Login', async (req, res) =>{
     const Email = req.body.Email
     const Pass = req.body.Pass
-    const user = await prisma.user.findUnique({
+    const userInfo = await prisma.user.findUnique({
       where: {
         Email: Email,
       },
     })
-      if(user.Email == Email & user.Pass == Pass){
+      if(userInfo.Email == Email & userInfo.Pass == Pass){
     const chavePrivada = "ti%aoxrjwKBB7ex@rDJDst@Cw@ioCqx!SR^oo"
-    jwt.sign(user, chavePrivada, (err, token) => {
+    jwt.sign(userInfo, chavePrivada, (err, token) => {
       
       if (err) {
-          res
+          res 
               .status(500)
-              .json({ mensagem: "Erro ao gerar o JWT" });
+              .json({ mensagem: "Erro ao gerar o JWT" })
 
           return;
       }
-      expiresIn: 300000
-      res.set("x-access-token", token);
-      res.send(true)
+       res.send(true)
+      res.set("x-access-token", token)
+
       res.end();
   });
 } else {
-  res.status(401);
   res.send(false)
-  res.end();
+  res.status(401)
+  res.end()
 }})
 
 app.post('/Recovery', async(req, res) => {

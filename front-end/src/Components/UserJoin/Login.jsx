@@ -18,7 +18,12 @@ const LoginPage = () => {
         Pass: valuesLogin.Pass
     } ).then((response) => {
      if(response.data == true){
-      window.location.href ='http://localhost:3000/Home'
+      Axios.get('http://localhost:8080/AuthStatus')
+      .then((response) => {
+          
+      })
+    //  window.location.href ='http://localhost:3000/Home'
+    console.log(response.data)
      }else{
        window.alert('Please, chek your login informations')
      }

@@ -6,12 +6,10 @@ import './Home.css'
 class Home extends Component{
 
    async componentDidMount(){
-    const CheckingJWT = () => {
         Axios.get('http://localhost:8080/AuthStatus')
         .then((response) => {
-            console.log(response.data)
+            
         })
-      }
    }
     render(){
         return(
