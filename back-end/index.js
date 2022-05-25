@@ -14,7 +14,6 @@ const prisma = new PrismaClient()
 
 const middlewareCheckJWT = async (req, res, next) => {
     const jwtFromFrontEnd = req.headers["authorization"]
-    console.log(jwtFromFrontEnd)
     const chavePrivada = "ti%aoxrjwKBB7ex@rDJDst@Cw@ioCqx!SR^oo"
     const jwtService = require("jsonwebtoken")
     jwtService.verify(jwtFromFrontEnd, chavePrivada, (err, userInfo) => {

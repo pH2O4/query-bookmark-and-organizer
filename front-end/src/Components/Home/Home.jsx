@@ -24,15 +24,15 @@ class Home extends Component{
         return(
             <div className="Home">
                 <div className="Header">
-                <Navbar collapsenselect='true' fixed='top' expand='sm' bg='dark'>
+                <Navbar collapsenselect='true' fixed='top' expand='sm'>
                     <Container>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav>
-                                <Nav.Link href="/"></Nav.Link>
-                                <Nav.Link href="/"></Nav.Link>
-                                <Nav.Link href="/"></Nav.Link>
-                                <Nav.Link href="/"></Nav.Link>
+                                <Nav.Link className="NAVLINK" href="/">KKK</Nav.Link>
+                                <Nav.Link className="NAVLINK" href="/"></Nav.Link>
+                                <Nav.Link className="NAVLINK" href="/"></Nav.Link>
+                                <Nav.Link className="NAVLINK" href="/"></Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
