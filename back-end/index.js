@@ -47,14 +47,15 @@ app.post('/Login', async (req, res) =>{
 
           return;
       }
-       res.send(true)
+    
       res.set("x-access-token", token)
-
+   res.send(token)
       res.end();
   });
 } else {
-  res.send(false)
+
   res.status(401)
+    res.send(false)
   res.end()
 }})
 
