@@ -13,10 +13,10 @@ class Home extends Component{
             }
           })
         .then((response) => {
-            console.log(response.data)
             response.data.Pass = ''
+            console.log(response.data)
             const takingUserId = response.data.id
-            console.log(takingUserId)
+            console.log(localStorage)
             localStorage.setItem('UserInformation', takingUserId)
         })
    }
