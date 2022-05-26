@@ -1,7 +1,8 @@
-import { React, Component, useState } from "react";
+import { React, Component} from "react";
 import Axios from 'axios'
 import {  Navbar, Nav, Container} from 'react-bootstrap'
 import './Home.css'
+import {  } from 'a'
 
 class Home extends Component{
 
@@ -13,8 +14,15 @@ class Home extends Component{
             }
           })
         .then((response) => {
-            response.data.Pass = ''
             console.log(response.data)
+            if(response.data === 'MissToken'){
+                document.body.style.display = 'none';
+           window.location.href ='http://localhost:3000'
+                window.alert('You are not authenticated')
+     
+            }
+            response.data.Pass = ''
+            
             const takingUserId = response.data.id
             console.log(localStorage)
             localStorage.setItem('UserInformation', takingUserId)
