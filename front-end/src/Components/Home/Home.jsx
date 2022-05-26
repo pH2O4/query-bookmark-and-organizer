@@ -2,7 +2,6 @@ import { React, Component} from "react";
 import Axios from 'axios'
 import {  Navbar, Nav, Container} from 'react-bootstrap'
 import './Home.css'
-import {  } from 'a'
 
 class Home extends Component{
 
