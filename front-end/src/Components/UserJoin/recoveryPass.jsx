@@ -1,4 +1,4 @@
-import { React, Component, useState } from "react";
+import { React, useState } from "react";
 import Axios from 'axios'
 import { } from 'react-bootstrap'
 import './Login.css'
@@ -19,7 +19,7 @@ const RecoveryPassPage = () => {
            Pass: valuesRecoveryPass.Pass,
            PassRepeat: valuesRecoveryPass.PassRepeat
        } ).then((response) => {
-         if(response.data == "Passwords don't check"){
+         if(response.data === "Passwords don't check"){
           window.alert(`${response.data}`)
          }else{
         window.alert(`${response.data}`)
@@ -29,7 +29,7 @@ const RecoveryPassPage = () => {
        })
      }
      const CheckPass = () => {
-      if (valuesRecoveryPass.Pass == valuesRecoveryPass.PassRepeat) {
+      if (valuesRecoveryPass.Pass === valuesRecoveryPass.PassRepeat) {
         RecoveringPass()
      }else{
       console.log(valuesRecoveryPass.Pass, valuesRecoveryPass.PassRepeat)

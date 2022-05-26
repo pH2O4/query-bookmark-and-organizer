@@ -7,6 +7,7 @@ import RecuveryPass from '../Components/UserJoin/recoveryPass'
 import Home from '../Components/Home/Home'
 
 export default props =>
+
 <div className="App">
 <Routes>
       <Route path="/" element={<LoginPage/>} />
@@ -14,4 +15,3 @@ export default props =>
       <Route path="/Home" element={<Home/>} />
     </Routes>
 </div>
-

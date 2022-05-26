@@ -18,6 +18,7 @@ const middlewareCheckJWT = async (req, res, next) => {
     const jwtService = require("jsonwebtoken")
     jwtService.verify(jwtFromFrontEnd, chavePrivada, (err, userInfo) => {
         if (err) {
+            res.send('MissToken')
             res.status(403).end()
             return;
         }
