@@ -20,3 +20,16 @@
     padding: 20px;
     border-radius: 9px;
 }
+
+.Content{
+  margin-top: 70px;
+  display: flex ;
+  flex-direction: row;
+}
+
+.Calendar{
+  margin-right: 150px;
+}
+.FormPOST{
+  width: 600px;
+}
