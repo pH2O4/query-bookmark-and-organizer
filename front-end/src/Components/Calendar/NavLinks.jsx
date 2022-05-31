@@ -18,7 +18,7 @@ function NavLinks() {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav>
                         <Nav.Link ref={target3} onMouseEnter={() => setShow3(!show3)} onMouseLeave={() => setShow3(!show3)} className="NAVLINK" href="/Home"><FontAwesomeIcon icon={faHome} /></Nav.Link>
-                        <Overlay target={target3.current} show={show3} placement="left">
+                        <Overlay target={target3.current} show={show3} placement="right">
                                 {(props) => (
                                     <Tooltip id="overlay-example" {...props}>
                                         Home
@@ -26,15 +26,15 @@ function NavLinks() {
                                 )}
                             </Overlay>
                             <Nav.Link ref={target} onMouseEnter={() => setShow(!show)} onMouseLeave={() => setShow(!show)} className="NAVLINK" href="/RegisterOperations"><FontAwesomeIcon icon={faTooth} /></Nav.Link>
-                            <Overlay target={target.current} show={show} placement="left">
+                            <Overlay target={target.current} show={show} placement="right">
                                 {(props) => (
                                     <Tooltip id="overlay-example" {...props}>
-                                        Configurar operações
+                                        Configurar Operações e Dentistas
                                     </Tooltip>
                                 )}
                             </Overlay>
                             <Nav.Link ref={target2} onMouseEnter={() => setShow2(!show2)} onMouseLeave={() => setShow2(!show2)} className="NAVLINK" href="/Calendar"><FontAwesomeIcon icon={faCalendarCheck} /></Nav.Link>
-                            <Overlay target={target2.current} show={show2} placement="left">
+                            <Overlay target={target2.current} show={show2} placement="right">
                                 {(props) => (
                                     <Tooltip id="overlay-example" {...props}>
                                         Calendario

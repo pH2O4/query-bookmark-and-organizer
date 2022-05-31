@@ -9,8 +9,8 @@ const LoginPage = () => {
     setValuesLogin((prevValueLogin) => ({
       ...prevValueLogin,
       [valueLogin.target.name]: valueLogin.target.value,
-    }));
-  };
+    }))
+  }
 
   const DoingLogin = () => {
     Axios.post('http://localhost:8080/Login',{

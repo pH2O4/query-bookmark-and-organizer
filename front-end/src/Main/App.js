@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import LoginPage from '../Components/UserJoin/Login'
 import RecuveryPass from '../Components/UserJoin/recoveryPass'
 import Home from '../Components/Home/Home'
-import Calendar from '../Components/Calendar/CalendarForm'
+import Calendar from '../Components/Calendar/CalendarFormandConsult'
 import ErroPag from '../Components/UserJoin/PagAuthError'
 export default props =>
 

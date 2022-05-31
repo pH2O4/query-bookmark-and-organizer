@@ -18,3 +18,11 @@ model User {
   Cellphone Int      @unique
   Admin     Boolean
 }
+
+model Consult{
+  id        Int      @id @default(autoincrement())@unique
+  Operation String
+  Day       String
+  Time      String
+  Client    String
+}
