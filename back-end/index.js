@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const UserControl = require('./Controlers/UserControl')
+const ConsultsAndRegisters = require('./Controlers/ConsultsRegister')
 const middlewareCheckJWT = UserControl.middlewareCheckJWT
 app.use(cors())
 app.use(express.json());

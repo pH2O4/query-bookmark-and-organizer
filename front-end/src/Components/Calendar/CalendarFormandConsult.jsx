@@ -1,7 +1,7 @@
 import { React, Component, useState } from "react";
 import Axios from 'axios'
 import './CalendarFormandConsult.css'
-import { Form } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import Calendar from './Calendar'
 import NavBarCalendar from './NavLinks'
 import CheckAuth from "../UserJoin/CheckAuthAllPags";
@@ -10,6 +10,7 @@ class CalendarForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      didClick: true,
       Operations: '',
       Dentist: '',
       Date: '',
@@ -18,6 +19,25 @@ class CalendarForm extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleButtonClicked = this.handleButtonClicked.bind(this)
+  }
+
+ handleButtonClicked(){
+    this.setState({
+      didClick: !this.state.didClick
+    });
+    if(this.state.didClick == true){
+      console.log(this.state.didClick)
+      document.getElementById('FirtTitleCharged').style.display = 'none'
+      document.getElementById('FORMX').style.display = 'block'
+      document.getElementById('FirtButton').style.display = 'none'
+    }else{
+      console.log(this.state.didClick)
+      document.getElementById('FirtTitleCharged').style.display = 'block'
+      document.getElementById('FORMX').style.display = 'none'
+      document.getElementById('FirtButton').style.display = 'block'
+      console.log('kaskas')
+    }
   }
 
   handleInputChange(event) {
@@ -32,12 +52,20 @@ class CalendarForm extends Component {
 
   async componentDidMount() {
     CheckAuth()
+    console.log(this.state.didClick)
   }
   render() {
-    const DoingLogin = () => {
+    const Consult = () => {
+    if( this.state.Operations || this.state.Client || this.state.Date || this.state.Time || this.state.Client){
+      window.alert('Algum campo ficou faltando, por favor verfique seu formulário')
+    }else{ 
+    const DoingConsultRequest = () => {
       Axios.post('http://localhost:8080/RegisterConsult',{
-          Email: valuesLogin.Email,
-          Pass: valuesLogin.Pass
+        Operations: this.state.Operations,
+        Dentist:this.state.Dentist,
+        Date: this.state.Date,
+        Time: this.state.Time,
+        Client: this.state.Client,
       } ).then((response) => {
        if(response.data){
         localStorage.setItem('authorization', response.data  )
@@ -47,7 +75,8 @@ class CalendarForm extends Component {
          window.alert('Please, chek your login informations')
        }
       })
-    }
+      DoingConsultRequest()
+    }}}
     return (
       <div className="CalendarForm">
         <div className="Header">
@@ -62,8 +91,13 @@ class CalendarForm extends Component {
             <div id="DaySelected">
 
             </div>
-            <div id="FORMX">
-              <Form>
+            <div >
+              <div  id="FirtDivCharged">
+               <h1 id="FirtTitleCharged"> CLique Em Alguma Data Para Ver Detalhes Sobre As Consultas Nesse Dia! </h1>
+              <Button id="FirtButton" className="primary" onClick={this.handleButtonClicked}>Marcar Uma Consulta</Button>
+
+              </div>
+              <Form id="FORMX">
                 <Form.Group id="OptionDoctor" >
                   <Form.Label>Qual Será o Dentista à Realizar a Operação?</Form.Label>
                   <select  onChange={this.handleInputChange}  value={this.state.Operations} name="Operations" className="border border-primary  form-select form-select">
@@ -98,8 +132,10 @@ class CalendarForm extends Component {
                 </Form.Group>
                 <Form.Group  className="mb-3 mt-2 " controlId="formBasicEmail">
                   <Form.Label>Qual O Nome Do Cliente a Realizar o Procedimento?</Form.Label>
-                  <Form.Control  onChange={this.handleInputChange}  value={this.state.Client}  Name="Client" className="border border-primary" type="text" placeholder="Insira o Nome" />
+                  <Form.Control  onChange={this.handleInputChange}  value={this.state.Client}  name="Client" className="border border-primary" type="text" placeholder="Insira o Nome" />
                 </Form.Group>
+                <Button id="BackButton" onClick={this.handleButtonClicked}  className="primary">Voltar</Button>
+                <Button onClick={() => Consult()} className="primary">Confirmar Marcação da Consulta!</Button>
               </Form>
 
             </div>
