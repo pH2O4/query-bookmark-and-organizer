@@ -7,6 +7,8 @@ import RecuveryPass from '../Components/UserJoin/recoveryPass'
 import Home from '../Components/Home/Home'
 import Calendar from '../Components/Calendar/CalendarFormandConsult'
 import ErroPag from '../Components/UserJoin/PagAuthError'
+import ROAD from '../Components/RegisterOperantionsAndDentists/OperationsAndDentists'
+
 export default props =>
 
   <div className="App">
@@ -16,5 +18,6 @@ export default props =>
       <Route path="/Recovery" element={<RecuveryPass />} />
       <Route path="/Home" element={<Home />} />
       <Route path="/Calendar" element={<Calendar />} />
+      <Route path="/RegisterOperationsAndDentist" element={<ROAD />} />
     </Routes>
   </div>

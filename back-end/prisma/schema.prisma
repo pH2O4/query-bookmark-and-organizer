@@ -25,4 +25,5 @@ model Consult{
   Day       String
   Time      String
   Client    String
+  Dentist   String   @unique
 }

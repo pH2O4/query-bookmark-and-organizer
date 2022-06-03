@@ -15,11 +15,11 @@ const prisma = new PrismaClient()
 
 //Login Detais
 app.post('/Login', UserControl.Login)
-app.post('/Recovery', UserControl.RecoveryPass) 
+app.post('/Recovery',middlewareCheckJWT, UserControl.RecoveryPass) 
 app.get('/AuthStatus',middlewareCheckJWT, UserControl.StatusAuth)
 
 //Consult Detais
-app.post('/RegisterConsult', UserControl.Login)
+app.post('/RegisterConsult', middlewareCheckJWT, UserControl.Login)
 
 const PORT = 8080;
 app.listen(PORT, () => {

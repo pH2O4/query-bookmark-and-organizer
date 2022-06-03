@@ -61,6 +61,9 @@ class CalendarForm extends Component {
     }else{ 
     const DoingConsultRequest = () => {
       Axios.post('http://localhost:8080/RegisterConsult',{
+        headers: {
+        Authorization: localStorage.getItem('authorization')
+      },
         Operations: this.state.Operations,
         Dentist:this.state.Dentist,
         Date: this.state.Date,
@@ -68,9 +71,7 @@ class CalendarForm extends Component {
         Client: this.state.Client,
       } ).then((response) => {
        if(response.data){
-        localStorage.setItem('authorization', response.data  )
-        window.location.href ='http://localhost:3000/Home'
-      console.log(response.data)
+       window.alert(response.data)
        }else{
          window.alert('Please, chek your login informations')
        }
@@ -93,25 +94,25 @@ class CalendarForm extends Component {
             </div>
             <div >
               <div  id="FirtDivCharged">
-               <h1 id="FirtTitleCharged"> CLique Em Alguma Data Para Ver Detalhes Sobre As Consultas Nesse Dia! </h1>
+               <h1 id="FirtTitleCharged"> Clique Em Alguma Data Para Ver Detalhes Sobre As Consultas Nesse Dia! </h1>
               <Button id="FirtButton" className="primary" onClick={this.handleButtonClicked}>Marcar Uma Consulta</Button>
 
               </div>
               <Form id="FORMX">
                 <Form.Group id="OptionDoctor" >
-                  <Form.Label>Qual Será o Dentista à Realizar a Operação?</Form.Label>
+                  <Form.Label> <b> Qual Será o Dentista à Realizar a Operação?</b></Form.Label>
                   <select  onChange={this.handleInputChange}  value={this.state.Operations} name="Operations" className="border border-primary  form-select form-select">
                     <option>Selecione o Dentista</option>
                   </select>
                 </Form.Group>
                 <Form.Group className="mt-2" id="OptionDoctor" >
-                  <Form.Label>Qual Será o Procedimento Realizado Pelo Dentista?</Form.Label>
+                  <Form.Label> <b>Qual Será o Procedimento Realizado Pelo Dentista?</b> </Form.Label>
                   <select name="Dentist" onChange={this.handleInputChange}  value={this.state.Dentist} className="border border-primary form-select form-select">
-                    <option>Selecione o Procedimento</option>
+                    <option>  Selecione o Procedimento</option>
                   </select>
                 </Form.Group>
                 <Form.Group className="mt-2" id="ConsultDay" >
-                  <Form.Label>Em Que Dia Será Realizado O Procedimento?</Form.Label>
+                  <Form.Label> <b> Em Que Dia Será Realizado O Procedimento?</b></Form.Label>
                   <Form.Control
                      onChange={this.handleInputChange}  value={this.state.Date} 
                     className="border border-primary"
@@ -121,7 +122,7 @@ class CalendarForm extends Component {
                   />
                 </Form.Group>
                 <Form.Group className="mt-2" id="ConsultHour" >
-                  <Form.Label>Em Que Horas Será Realizado O Procedimento?</Form.Label>
+                  <Form.Label> <b>Em Que Horas Será Realizado O Procedimento?</b> </Form.Label>
                   <Form.Control
                    onChange={this.handleInputChange}  value={this.state.Time} 
                     className="border border-primary"
@@ -131,11 +132,11 @@ class CalendarForm extends Component {
                   />
                 </Form.Group>
                 <Form.Group  className="mb-3 mt-2 " controlId="formBasicEmail">
-                  <Form.Label>Qual O Nome Do Cliente a Realizar o Procedimento?</Form.Label>
+                  <Form.Label> <b>Qual O Nome Do Cliente a Realizar o Procedimento?</b> </Form.Label>
                   <Form.Control  onChange={this.handleInputChange}  value={this.state.Client}  name="Client" className="border border-primary" type="text" placeholder="Insira o Nome" />
                 </Form.Group>
-                <Button id="BackButton" onClick={this.handleButtonClicked}  className="primary">Voltar</Button>
-                <Button onClick={() => Consult()} className="primary">Confirmar Marcação da Consulta!</Button>
+                <Button id="BackButton" onClick={this.handleButtonClicked}  className="primary"> <b> Voltar</b></Button>
+                <Button onClick={() => Consult()} className="primary"> <b>Confirmar Marcação da Consulta!</b> </Button>
               </Form>
 
             </div>

@@ -11,6 +11,7 @@ function CheckAuth () {
     .then((response) => {
         if(response.data === 'MissToken'){
        window.location.href ='http://localhost:3000/Error'
+     console.log(response.data)
         }
         response.data.Pass = ''
         const takingUserId = response.data.id

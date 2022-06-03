@@ -25,11 +25,12 @@ function NavLinks() {
                                     </Tooltip>
                                 )}
                             </Overlay>
-                            <Nav.Link ref={target} onMouseEnter={() => setShow(!show)} onMouseLeave={() => setShow(!show)} className="NAVLINK" href="/RegisterOperations"><FontAwesomeIcon icon={faTooth} /></Nav.Link>
+                            <Nav.Link ref={target} onMouseEnter={() => setShow(!show)} onMouseLeave={() => setShow(!show)} className="NAVLINK" href="/RegisterOperationsAndDentist"><FontAwesomeIcon icon={faTooth} /></Nav.Link>
                             <Overlay target={target.current} show={show} placement="right">
                                 {(props) => (
                                     <Tooltip id="overlay-example" {...props}>
-                                        Configurar Operações e Dentistas
+                                        Configurar Operações <br />
+                                        Registrar Dentistas
                                     </Tooltip>
                                 )}
                             </Overlay>
@@ -37,7 +38,7 @@ function NavLinks() {
                             <Overlay target={target2.current} show={show2} placement="right">
                                 {(props) => (
                                     <Tooltip id="overlay-example" {...props}>
-                                        Calendario
+                                        Calendário
                                     </Tooltip>
                                 )}
                             </Overlay>

@@ -15,6 +15,9 @@ const RecoveryPassPage = () => {
    
      const RecoveringPass = () => {
        Axios.post( 'http://localhost:8080/Recovery',{
+        headers: {
+          Authorization: localStorage.getItem('authorization')
+        },
         Email: valuesRecoveryPass.Email,
            Pass: valuesRecoveryPass.Pass,
            PassRepeat: valuesRecoveryPass.PassRepeat
