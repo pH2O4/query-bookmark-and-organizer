@@ -15,12 +15,15 @@ const prisma = new PrismaClient()
 
 //Login Detais
 app.post('/Login', UserControl.Login)
-app.post('/Recovery',middlewareCheckJWT, UserControl.RecoveryPass) 
+app.post('/Recovery', UserControl.RecoveryPass) 
 app.get('/AuthStatus',middlewareCheckJWT, UserControl.StatusAuth)
 
 //Consult Detais
-app.post('/RegisterConsult', middlewareCheckJWT, UserControl.Login)
+app.post('/RegisterConsult', middlewareCheckJWT, ConsultsAndRegisters.Consult)
 
+//Register Detais
+app.post('RegisteroOperation', middlewareCheckJWT, ConsultsAndRegisters.Operations)
+app.post('RegisteroWokers', middlewareCheckJWT, ConsultsAndRegisters.Workers)
 const PORT = 8080;
 app.listen(PORT, () => {
     console.log(`Running in http://localhost:${PORT}`)

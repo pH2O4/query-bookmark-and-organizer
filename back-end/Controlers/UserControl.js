@@ -61,7 +61,7 @@ module.exports.RecoveryPass = async(req, res) => {
 
           return;
       }
-      expiresIn: 900000
+      expiresIn: '1d'
       res.set("x-access-token", token)
    res.send(token)
       res.end();

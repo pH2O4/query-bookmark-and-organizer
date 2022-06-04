@@ -52,11 +52,10 @@ class CalendarForm extends Component {
 
   async componentDidMount() {
     CheckAuth()
-    console.log(this.state.didClick)
   }
   render() {
     const Consult = () => {
-    if( this.state.Operations || this.state.Client || this.state.Date || this.state.Time || this.state.Client){
+    if( this.state.Operations == '' || this.state.Client == '' || this.state.Date == '' || this.state.Time  == '' || this.state.Client == ''){
       window.alert('Algum campo ficou faltando, por favor verfique seu formulário')
     }else{ 
     const DoingConsultRequest = () => {

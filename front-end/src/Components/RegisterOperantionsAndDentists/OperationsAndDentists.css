@@ -13,14 +13,18 @@
 .ContentROAD{
     margin-top: 100px;
 }
-
+#FormOperations{
+    margin-left: 30px;
+    display: none;
+}
 #RegisterButtons{
     display: flex;
     flex-direction: row;
     margin-left: 20px;
 }
-#FormsForRegisters{
+#FormDentist{
     margin-left: 30px;
+    display: none;
 }
 .ButtonInd{
     margin: 0px 10px;

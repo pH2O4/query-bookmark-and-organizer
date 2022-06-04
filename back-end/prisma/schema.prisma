@@ -11,19 +11,21 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())@unique
-  Name      String   
-  Email     String   @unique
-  Pass      String
-  Cellphone Int      @unique
-  Admin     Boolean
+  id                   Int     @id @unique @default(autoincrement())
+  Name                 String
+  Email                String  @unique
+  Pass                 String  @default("123")
+  Cellphone            Int     @unique
+  Admin                Boolean
+  Function             String  @default("Atendente")
+  IsHeSheNeedTradePass Boolean
 }
 
-model Consult{
-  id        Int      @id @default(autoincrement())@unique
+model Consult {
+  id        Int    @id @unique @default(autoincrement())
   Operation String
   Day       String
-  Time      String
+  Time      String @default("10")
   Client    String
-  Dentist   String   @unique
+  Dentist   String @unique
 }
