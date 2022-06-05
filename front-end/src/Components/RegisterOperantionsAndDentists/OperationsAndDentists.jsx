@@ -48,16 +48,18 @@ class ROAD extends Component {
   }
   render() {
     const RegisterOperation = () => {
+      console.log(this.state.Nomedaoperação, this.state.TempoOperação)
       if (this.state.Nomedaoperação == '' || this.state.TempoOperação == '') {
         window.alert('Algum campo ficou faltando, por favor verfique seu formulário')
       } else {
+        console.log('skaksa')
         const DoingRegisterOperation = () => {
-          Axios.post('http://localhost:8080/RegisterOperations', {
-            headers: {
+          Axios.post('http://localhost:8080/RegisteroOperation', {
+          Nomedaoperação: this.state.Nomedaoperação,
+            TempoOperação: this.state.TempoOperação},
+         {    headers: {
               Authorization: localStorage.getItem('authorization')
-            },
-            Nomedaoperação: this.state.Nomedaoperação,
-            TempoOperação: this.state.TempoOperação
+            }
           }).then((response) => {
             if (response.data) {
               console.log(response.data)
@@ -65,8 +67,8 @@ class ROAD extends Component {
               window.alert('Please, chek your login informations')
             }
           })
-          DoingRegisterOperation()
         }
+        DoingRegisterOperation()
       }
     }
 
@@ -113,7 +115,7 @@ class ROAD extends Component {
                 <Form.Label> <b>Tempo da Operação Em Média</b> </Form.Label>
                 <Form.Control onChange={this.handleInputChange} value={this.state.TempoOperação} name="TempoOperação" type="Number" placeholder="Insira o Tempo Média da Operação" />
               </Form.Group>
-              <Button onClick={() => RegisterOperation}  variant="primary" >
+              <Button onClick={() => RegisterOperation()}  variant="primary" >
                 <b>Registrar</b>
               </Button>
             </Form>

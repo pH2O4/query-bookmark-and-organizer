@@ -22,8 +22,8 @@ app.get('/AuthStatus',middlewareCheckJWT, UserControl.StatusAuth)
 app.post('/RegisterConsult', middlewareCheckJWT, ConsultsAndRegisters.Consult)
 
 //Register Detais
-app.post('RegisteroOperation', middlewareCheckJWT, ConsultsAndRegisters.Operations)
-app.post('RegisteroWokers', middlewareCheckJWT, ConsultsAndRegisters.Workers)
+app.post('/RegisteroOperation', middlewareCheckJWT, ConsultsAndRegisters.Operations)
+app.post('/RegisteroWokers', middlewareCheckJWT, ConsultsAndRegisters.Workers)
 const PORT = 8080;
 app.listen(PORT, () => {
     console.log(`Running in http://localhost:${PORT}`)

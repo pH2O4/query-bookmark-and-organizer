@@ -9,6 +9,7 @@ module.exports.Consult = async(req, res) => {
 module.exports.Operations = async(req, res) => {
     const {Nomedaoperação, TempoOperação} = req.body
     console.log(Nomedaoperação, TempoOperação)
+    res.send('this get rigth')
 }
 
 module.exports.Workers = async(req, res) => {
