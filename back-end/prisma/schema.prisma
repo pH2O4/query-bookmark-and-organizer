@@ -16,7 +16,7 @@ model User {
   Email                String  @unique
   Pass                 String  @default("123")
   Cellphone            Int     @unique
-  Admin                Boolean
+  Admin                Boolean @default(false)
   Function             String  @default("Atendente")
   IsHeSheNeedTradePass Boolean @default(true)
 }

@@ -9,6 +9,7 @@ class ROAD extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      checkadmin: false,
       didClick: '',
       Nomedaoperação: '',
       TempoOperação: '',
@@ -17,6 +18,7 @@ class ROAD extends Component {
       Email: '',
       Celular: '',
     };
+    this.handleButtonClickedAdmin = this.handleButtonClickedAdmin.bind(this)
     this.handleButtonClicked = this.handleButtonClicked.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -43,6 +45,13 @@ class ROAD extends Component {
       document.getElementById("FormOperations").style.display = 'block'
     }
   }
+
+   handleButtonClickedAdmin() {
+    this.setState({
+      checkadmin: !this.state.checkadmin
+    });
+    console.log(this.state.checkadmin)
+  }
   async componentDidMount() {
     CheckAuth()
   }
@@ -52,21 +61,22 @@ class ROAD extends Component {
       if (this.state.Nomedaoperação == '' || this.state.TempoOperação == '') {
         window.alert('Algum campo ficou faltando, por favor verfique seu formulário')
       } else {
-        console.log('skaksa')
         const DoingRegisterOperation = () => {
           Axios.post('http://localhost:8080/RegisteroOperation', {
-          Nomedaoperação: this.state.Nomedaoperação,
-            TempoOperação: this.state.TempoOperação},
-         {    headers: {
-              Authorization: localStorage.getItem('authorization')
-            }
-          }).then((response) => {
-            if (response.data) {
-              console.log(response.data)
-            } else {
-              window.alert('Please, chek your login informations')
-            }
-          })
+            Nomedaoperação: this.state.Nomedaoperação,
+            TempoOperação: this.state.TempoOperação
+          },
+            {
+              headers: {
+                Authorization: localStorage.getItem('authorization')
+              }
+            }).then((response) => {
+              if (response.data) {
+               window.alert(response.data)
+              } else {
+                window.alert('Please, chek your login informations')
+              }
+            })
         }
         DoingRegisterOperation()
       }
@@ -79,19 +89,24 @@ class ROAD extends Component {
       } else {
         const DoingRegisterWorker = () => {
           Axios.post('http://localhost:8080/RegisteroWokers', {
-            FunçãodoFuncionário: this.state.FunçãodoFuncionário,
+            FunçãoFuncionário: this.state.FunçãodoFuncionário,
             Nome: this.state.Nome,
             Email: this.state.Email,
             Celular: this.state.Celular,
+            Admin: this.state.checkadmin,
+          }, {
+            headers: {
+              Authorization: localStorage.getItem('authorization')
+            }
           }).then((response) => {
             if (response.data) {
-              console.log(response.data)
+              window.alert(response.data)
             } else {
               window.alert('Please, chek your login informations')
             }
           })
-          DoingRegisterWorker()
         }
+        DoingRegisterWorker()
       }
     }
     return (
@@ -112,10 +127,10 @@ class ROAD extends Component {
                 <Form.Control name="Nomedaoperação" onChange={this.handleInputChange} value={this.state.Nomedaoperação} type="text" placeholder="Insira o Nome da Nova Operação" />
               </Form.Group>
               <Form.Group className="mb-3" name="Dentist">
-                <Form.Label> <b>Tempo da Operação Em Média</b> </Form.Label>
+                <Form.Label> <b>Tempo da Operação Em Média (Em horas)</b> </Form.Label>
                 <Form.Control onChange={this.handleInputChange} value={this.state.TempoOperação} name="TempoOperação" type="Number" placeholder="Insira o Tempo Média da Operação" />
               </Form.Group>
-              <Button onClick={() => RegisterOperation()}  variant="primary" >
+              <Button onClick={() => RegisterOperation()} variant="primary" >
                 <b>Registrar</b>
               </Button>
             </Form>
@@ -138,7 +153,15 @@ class ROAD extends Component {
                 <Form.Label> <b> Celular</b></Form.Label>
                 <Form.Control onChange={this.handleInputChange} value={this.state.Celular} name="Celular" type="text" placeholder="Celular do funcionário" />
               </Form.Group>
-              <Button variant="primary" >
+              <Form.Group >
+                <Form.Check className="mb-2"
+                  checked={this.state.checkadmin}
+                  onChange={this. handleButtonClickedAdmin}
+                  type={"checkbox"}
+                  label={"Admin"}
+                />
+              </Form.Group >
+              <Button onClick={() => RegisterWorker()} variant="primary" >
                 <b>Registrar</b>
               </Button>
             </Form>
