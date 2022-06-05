@@ -18,14 +18,20 @@ model User {
   Cellphone            Int     @unique
   Admin                Boolean
   Function             String  @default("Atendente")
-  IsHeSheNeedTradePass Boolean
+  IsHeSheNeedTradePass Boolean @default(true)
 }
 
 model Consult {
   id        Int    @id @unique @default(autoincrement())
   Operation String
   Day       String
-  Time      String @default("10")
+  Time      String
   Client    String
-  Dentist   String @unique
+  Dentist   String
+}
+
+model Operation {
+  id            Int    @id @unique @default(autoincrement())
+  Name          String @unique
+  OperationTime Int    @default(5)
 }
