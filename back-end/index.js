@@ -23,6 +23,7 @@ app.post('/RegisterConsult', middlewareCheckJWT, ConsultsAndRegisters.Consult)
 
 //Register Detais
 app.post('/RegisteroOperation', middlewareCheckJWT, ConsultsAndRegisters.Operations)
+app.get('/ContultOperations', ConsultsAndRegisters.OperationsConsult)
 app.post('/RegisteroWokers', middlewareCheckJWT, ConsultsAndRegisters.Workers)
 const PORT = 8080;
 app.listen(PORT, () => {

@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 module.exports.Consult = async (req, res) => {
     const { Operations, Dentist, Date, Time, Client } = req.body
     console.log(Operations, Dentist, Date, Time, Client)
-    
+
 }
 
 module.exports.Operations = async (req, res) => {
@@ -18,9 +18,19 @@ module.exports.Operations = async (req, res) => {
             },
         })
         res.send('Sua operação foi registrada com sucesso!')
-   } catch (error) {
+    } catch (error) {
         res.send('A operação já existe')
-    } 
+    }
+}
+
+module.exports.OperationsConsult = async (req, res) => {
+    try {
+        const OperationsConsultData = await prisma.Operation.findMany()
+        console.log(OperationsConsultData)
+        res.send(OperationsConsultData)
+    } catch (error) {
+        res.send('A operação já existe')
+    }
 }
 
 module.exports.Workers = async (req, res) => {
@@ -29,7 +39,7 @@ module.exports.Workers = async (req, res) => {
     const User = await prisma.User.create({
         data: {
             Email: Email,
-            Name:  Nome,
+            Name: Nome,
             Cellphone: CelularConvert,
             Function: FunçãoFuncionário,
             Admin: Admin,
