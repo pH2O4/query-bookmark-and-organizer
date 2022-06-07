@@ -25,6 +25,7 @@ app.post('/RegisterConsult', middlewareCheckJWT, ConsultsAndRegisters.Consult)
 app.post('/RegisteroOperation', middlewareCheckJWT, ConsultsAndRegisters.Operations)
 app.get('/ContultOperations', ConsultsAndRegisters.OperationsConsult)
 app.post('/RegisteroWokers', middlewareCheckJWT, ConsultsAndRegisters.Workers)
+app.get('/ConsultRegisteroWokers',  ConsultsAndRegisters.ConsultWorkers)
 const PORT = 8080;
 app.listen(PORT, () => {
     console.log(`Running in http://localhost:${PORT}`)

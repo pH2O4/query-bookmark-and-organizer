@@ -33,6 +33,19 @@ module.exports.OperationsConsult = async (req, res) => {
     }
 }
 
+module.exports.ConsultWorkers = async (req, res) => {
+   // try {
+        const ConsultWorkers = await prisma.User.findMany({
+            where: {
+                Function: 'Dentista'
+            },
+          })
+        res.send(ConsultWorkers.map( Dentist => Dentist.Name))
+  //  } catch (error) {
+    //    res.send('O dentista já existe')
+ //   }
+}
+
 module.exports.Workers = async (req, res) => {
     const { FunçãoFuncionário, Nome, Email, Celular, Admin } = req.body
     const CelularConvert = parseInt(Celular)

@@ -16,7 +16,8 @@ class CalendarForm extends Component {
       Date: '',
       Time: '',
       Client: '',
-      items:'',
+      OperationsLOGS: [],
+      DentistsLOGS: [],
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,16 +29,13 @@ class CalendarForm extends Component {
       didClick: !this.state.didClick
     });
     if (this.state.didClick == true) {
-      console.log(this.state.didClick)
       document.getElementById('FirtTitleCharged').style.display = 'none'
       document.getElementById('FORMX').style.display = 'block'
       document.getElementById('FirtButton').style.display = 'none'
     } else {
-      console.log(this.state.didClick)
       document.getElementById('FirtTitleCharged').style.display = 'block'
       document.getElementById('FORMX').style.display = 'none'
       document.getElementById('FirtButton').style.display = 'block'
-      console.log('kaskas')
     }
   }
 
@@ -53,19 +51,22 @@ class CalendarForm extends Component {
 
   async componentDidMount() {
     CheckAuth()
-    await fetch("https://api.example.com/items")
+    await fetch("http://localhost:8080/ContultOperations")
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
-            items: result.items
-          });
-        },
-        (error) => {
+            OperationsLOGS: result
+          })
+        }
+      )
+    await fetch("http://localhost:8080/ConsultRegisteroWokers")
+      .then(res => res.json())
+      .then(
+        (result) => {
           this.setState({
-            isLoaded: true,
-            error
-          });
+            DentistsLOGS: result
+          })
         }
       )
   }
@@ -76,26 +77,32 @@ class CalendarForm extends Component {
       } else {
         const DoingConsultRequest = () => {
           Axios.post('http://localhost:8080/RegisterConsult', {
-            headers: {
-              Authorization: localStorage.getItem('authorization')
+          
+              Operations: this.state.Operations,
+              Dentist: this.state.Dentist,
+              Date: this.state.Date,
+              Time: this.state.Time,
+              Client: this.state.Client,
             },
-            Operations: this.state.Operations,
-            Dentist: this.state.Dentist,
-            Date: this.state.Date,
-            Time: this.state.Time,
-            Client: this.state.Client,
-          }).then((response) => {
-            if (response.data) {
-              window.alert(response.data)
-            } else {
-              window.alert('Please, chek your login informations')
-            }
-          })
-          DoingConsultRequest()
+          {
+              headers: {
+                Authorization: localStorage.getItem('authorization')
+              },
+
+            }).then((response) => {
+              if (response.data) {
+                window.alert(response.data)
+              } else {
+                window.alert('Please, chek your login informations')
+              }
+            })
         }
+        DoingConsultRequest()
       }
     }
+    const { OperationsLOGS, DentistsLOGS } = this.state
     return (
+
       <div className="CalendarForm">
         <div className="Header">
           <NavBarCalendar />
@@ -116,16 +123,24 @@ class CalendarForm extends Component {
 
               </div>
               <Form id="FORMX">
-                <Form.Group id="OptionDoctor" >
+                <Form.Group id="OptionDoctor">
                   <Form.Label> <b> Qual Será o Dentista à Realizar a Operação?</b></Form.Label>
                   <select onChange={this.handleInputChange} value={this.state.Operations} name="Operations" className="border border-primary  form-select form-select">
                     <option>Selecione o Dentista</option>
+                    {DentistsLOGS.map(Dentist => (
+                      <option value={Dentist} key={Dentist}>
+                        {Dentist}</option>
+                    ))}
                   </select>
                 </Form.Group>
                 <Form.Group className="mt-2" id="OptionDoctor" >
                   <Form.Label> <b>Qual Será o Procedimento Realizado Pelo Dentista?</b> </Form.Label>
                   <select name="Dentist" onChange={this.handleInputChange} value={this.state.Dentist} className="border border-primary form-select form-select">
                     <option>  Selecione o Procedimento</option>
+                    {OperationsLOGS.map(item => (
+                      <option value={item.Name} key={item.id}>
+                        {item.Name}</option>
+                    ))}
                   </select>
                 </Form.Group>
                 <Form.Group className="mt-2" id="ConsultDay" >
