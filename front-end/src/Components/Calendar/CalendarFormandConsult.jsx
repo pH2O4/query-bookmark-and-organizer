@@ -92,8 +92,11 @@ class CalendarForm extends Component {
             }).then((response) => {
               if (response.data) {
                 window.alert(response.data)
+                window.location.reload()
               } else {
                 window.alert('Please, chek your login informations')
+                window.location.reload()
+
               }
             })
         }
@@ -125,7 +128,7 @@ class CalendarForm extends Component {
               <Form id="FORMX">
                 <Form.Group id="OptionDoctor">
                   <Form.Label> <b> Qual Será o Dentista à Realizar a Operação?</b></Form.Label>
-                  <select onChange={this.handleInputChange} value={this.state.Operations} name="Operations" className="border border-primary  form-select form-select">
+                  <select onChange={this.handleInputChange} value={this.state.Dentist} name="Dentist" className="border border-primary  form-select form-select">
                     <option>Selecione o Dentista</option>
                     {DentistsLOGS.map(Dentist => (
                       <option value={Dentist} key={Dentist}>
@@ -135,7 +138,7 @@ class CalendarForm extends Component {
                 </Form.Group>
                 <Form.Group className="mt-2" id="OptionDoctor" >
                   <Form.Label> <b>Qual Será o Procedimento Realizado Pelo Dentista?</b> </Form.Label>
-                  <select name="Dentist" onChange={this.handleInputChange} value={this.state.Dentist} className="border border-primary form-select form-select">
+                  <select name="Operations" onChange={this.handleInputChange} value={this.state.Operations} className="border border-primary form-select form-select">
                     <option>  Selecione o Procedimento</option>
                     {OperationsLOGS.map(item => (
                       <option value={item.Name} key={item.id}>
