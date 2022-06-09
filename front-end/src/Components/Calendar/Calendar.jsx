@@ -4,17 +4,21 @@ import Axios from 'axios';
 function CalendarComponent(props) {
   const [value, onChange] = useState(new Date());
 
-  const ChekingConultsOnThisDay = () => {
-   Axios.get('http://localhost:8080/SeeDayConsult', {
-      headers: {
-        Authorization: localStorage.getItem('authorization')
-      }}).then((response) => {
-         
+  const ChekingConultsOnThisDay = (e) => {
+    console.log(e)
+   Axios.post('http://localhost:8080/SeeDayConsult', {
+    Day: e,
+  }, {
+    headers: {
+      Authorization: localStorage.getItem('authorization')
+    }
+  }).then((response) => {
+         console.log(response.data)
       })
   } 
   return (
     <div>
-      <Calendar  onClickDay={ChekingConultsOnThisDay()} onChange={onChange} value={value} />
+      <Calendar  onClickDay={(target) => ChekingConultsOnThisDay( target)} onChange={onChange} value={value} />
     </div>
   );
 }

@@ -71,11 +71,8 @@ class ROAD extends Component {
                 Authorization: localStorage.getItem('authorization')
               }
             }).then((response) => {
-              if (response.data) {
                window.alert(response.data)
-              } else {
-                window.alert('Please, chek your login informations')
-              }
+               window.location.reload()
             })
         }
         DoingRegisterOperation()
@@ -99,11 +96,8 @@ class ROAD extends Component {
               Authorization: localStorage.getItem('authorization')
             }
           }).then((response) => {
-            if (response.data) {
-              window.alert(response.data)
-            } else {
-              window.alert('Please, chek your login informations')
-            }
+            window.alert(response.data)
+            window.location.reload()
           })
         }
         DoingRegisterWorker()

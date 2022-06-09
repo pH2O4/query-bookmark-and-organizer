@@ -20,7 +20,7 @@ app.get('/AuthStatus',middlewareCheckJWT, UserControl.StatusAuth)
 
 //Consult Detais
 app.post('/RegisterConsult', middlewareCheckJWT, ConsultsAndRegisters.Consult)
-app.get('/SeeDayConsult', middlewareCheckJWT, ConsultsAndRegisters.SeeContultForDay)
+app.post('/SeeDayConsult', middlewareCheckJWT, ConsultsAndRegisters.SeeContultForDay)
 
 //Register Detais
 app.post('/RegisteroOperation', middlewareCheckJWT, ConsultsAndRegisters.Operations)
