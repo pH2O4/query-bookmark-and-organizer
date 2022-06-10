@@ -70,6 +70,7 @@ class CalendarForm extends Component {
         }
       )
   }
+
   render() {
     const Consult = () => {
       if (this.state.Operations == '' || this.state.Client == '' || this.state.Date == '' || this.state.Time == '' || this.state.Client == '') {
@@ -77,14 +78,13 @@ class CalendarForm extends Component {
       } else {
         const DoingConsultRequest = () => {
           Axios.post('http://localhost:8080/RegisterConsult', {
-          
-              Operations: this.state.Operations,
-              Dentist: this.state.Dentist,
-              Date: this.state.Date,
-              Time: this.state.Time,
-              Client: this.state.Client,
-            },
-          {
+            Operations: this.state.Operations,
+            Dentist: this.state.Dentist,
+            Date: this.state.Date,
+            Time: this.state.Time,
+            Client: this.state.Client,
+          },
+            {
               headers: {
                 Authorization: localStorage.getItem('authorization')
               },
@@ -179,7 +179,7 @@ class CalendarForm extends Component {
           </div>
         </div>
         <div className="Footer">
-
+ 
         </div>
       </div>
     )

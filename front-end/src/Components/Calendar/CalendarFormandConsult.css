@@ -1,7 +1,7 @@
 .CalendarForm{
     min-height: 100vh;
     display: grid;
-    font-weight: 400;
+    font-weight: 400px;
     font-family: sans-serif;
     background: #2980B9;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);  /* Chrome 10-25, Safari 5.1-6 */
@@ -23,10 +23,20 @@
     border-radius: 9px;
 }
 
+.ReciveDays{
+font-size: 15px;
+font-weight: 900px;
+display: flex;
+flex-direction: column;
+margin-left: 65px;
+margin-top: 25px;
+}
+
 .Content{
   margin-top: 70px;
   display: flex ;
   flex-direction: row;
+
 }
 
 #FORMX{

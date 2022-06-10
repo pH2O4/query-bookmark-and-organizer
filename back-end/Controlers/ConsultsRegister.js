@@ -67,11 +67,16 @@ module.exports.SeeContultForDay = async (req, res) => {
 const {Day} = req.body
 const slitDay = Day.split('T')
 const dayTrated = slitDay[0]
-const users = await prisma.user.findMany({
+const Consult = await prisma.Consult.findMany({
     where: {
         Day: dayTrated
     },
   })
+  if(Consult.length > 0){
+    res.send(Consult)
+  }else{
+    res.send("Nenhuma Consulta Econtrada nesse dia")
+  }
 }
 
 module.exports.Operations = async (req, res) => {
