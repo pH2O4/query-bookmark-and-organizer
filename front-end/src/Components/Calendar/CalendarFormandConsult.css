@@ -8,6 +8,11 @@
     background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
   }
+
+.ConsultsOnThisDay{
+width: 450px;
+} 
+
 #BackButton{
   margin-right: 10px;
 }
@@ -50,4 +55,20 @@ margin-top: 10px;
 }
 .FormPOST{
   width: 600px;
+}
+.SomeConsult{
+display: none;
+}
+
+#TituloRecivD{
+  font-size: 20px;
+  font-weight: 700;
+  margin: 10px 0px;
+}
+
+.AllConsultsOnDay{
+  background-color: aliceblue;
+  padding: 8px;
+  border-radius: 9px;
+  border: solid;
 }

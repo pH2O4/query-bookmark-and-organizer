@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import Axios from 'axios';
-import { faFeatherPointed } from '@fortawesome/free-solid-svg-icons'
+import { faFeatherPointed, faTeeth, faClock, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function CalendarComponent(props) {
   const [value, onChange] = useState(new Date());
   const [ConsultsArray, onChangeConsults] = useState([])
+  //const [ExisteSomeCOnsult, onChangeExisteSomeConsults] = useState(true)
   let ConsultsOnThisDay = []
   const ChekingConultsOnThisDay = (e) => {
 
@@ -17,19 +18,25 @@ function CalendarComponent(props) {
         Authorization: localStorage.getItem('authorization')
       }
     }).then((response) => {
-      console.log(response.data)
-      onChangeConsults(response.data)
+      if (response.data == 'Nenhuma Consulta Econtrada nesse dia') {
+        document.getElementById('SomeConsult').style.display = 'block';
+        onChangeConsults([])
+      } else {
+        onChangeConsults(response.data)
+        document.getElementById('SomeConsult').style.display = 'none';
+      }
+
     })
   }
   return (
     <div>
       <Calendar onClickDay={(target) => ChekingConultsOnThisDay(target)} onChange={onChange} value={value} />
       <div className="ReciveDays">
-        <h3>Consultas encontradas no dia selecionado:</h3>
-        <div>
+        <div id='TituloRecivD'>Consultas encontradas no dia selecionado:</div>
+        <div className='ConsultsOnThisDay'>
+          <div id='SomeConsult'> <b> Nenhuma consulta encontrada</b></div>
           {ConsultsArray.map((Consult) =>
-            <div key={Consult.id}>
-              {Consult.Dentist}
+            <div className="AllConsultsOnDay" key={Consult.id}> <b><FontAwesomeIcon icon={faFeatherPointed} /> Dentista:</b> {Consult.Dentist} <b><FontAwesomeIcon icon={faTeeth} /> Operação:</b> {Consult.Operation} <b><FontAwesomeIcon icon={faClock} /> Hora:</b> {Consult.Time}   <b><FontAwesomeIcon icon={faUser} /> Paciente:</b> {Consult.Client}
             </div>
           )}
         </div>
