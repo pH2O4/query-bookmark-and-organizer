@@ -7,10 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function CalendarComponent(props) {
   const [value, onChange] = useState(new Date());
   const [ConsultsArray, onChangeConsults] = useState([])
-  //const [ExisteSomeCOnsult, onChangeExisteSomeConsults] = useState(true)
-  let ConsultsOnThisDay = []
-  const ChekingConultsOnThisDay = (e) => {
 
+  let ConsultsOnThisDay = []
+  window.onload = function Dale(){
+    let day = '12 de junho de 2022'
+    const getingday = value.getDate(20220609)
+  }
+    const ChekingConultsOnThisDay = (e) => {
+    
     Axios.post('http://localhost:8080/SeeDayConsult', {
       Day: e,
     }, {
@@ -30,7 +34,7 @@ function CalendarComponent(props) {
   }
   return (
     <div>
-      <Calendar onClickDay={(target) => ChekingConultsOnThisDay(target)} onChange={onChange} value={value} />
+      <Calendar formatDay={} onClickDay={(target) => ChekingConultsOnThisDay(target)} onChange={onChange} value={value} />
       <div className="ReciveDays">
         <div id='TituloRecivD'>Consultas encontradas no dia selecionado:</div>
         <div className='ConsultsOnThisDay'>
