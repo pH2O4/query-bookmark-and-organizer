@@ -79,6 +79,11 @@ const Consult = await prisma.Consult.findMany({
   }
 }
 
+module.exports.SeeAllConsults = async (req, res) => {
+    const ConsultAllConults = await prisma.Consult.findMany()
+    res.send(ConsultAllConults)
+}
+
 module.exports.Operations = async (req, res) => {
     const { Nomedaoperação, TempoOperação } = req.body
     const TempoOperaçãoConvert = parseInt(TempoOperação)

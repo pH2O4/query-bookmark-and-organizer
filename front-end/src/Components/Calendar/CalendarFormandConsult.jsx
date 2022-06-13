@@ -51,6 +51,16 @@ class CalendarForm extends Component {
 
   async componentDidMount() {
     CheckAuth()
+
+    await Axios.get('http://localhost:8080/SeeAllConsuts', {
+      headers: {
+        Authorization: localStorage.getItem('authorization')
+      }
+    })
+      .then((response => {
+        console.log(response.data)
+      }))
+
     await fetch("http://localhost:8080/ContultOperations")
       .then(res => res.json())
       .then(
@@ -179,7 +189,7 @@ class CalendarForm extends Component {
           </div>
         </div>
         <div className="Footer">
- 
+
         </div>
       </div>
     )
