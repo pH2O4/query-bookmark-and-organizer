@@ -5,6 +5,7 @@ import { Form, Button } from 'react-bootstrap'
 import Calendar from './Calendar'
 import NavBarCalendar from './NavLinks'
 import CheckAuth from "../UserJoin/CheckAuthAllPags";
+import $ from 'jquery'
 
 class CalendarForm extends Component {
   constructor(props) {
@@ -18,16 +19,93 @@ class CalendarForm extends Component {
       Client: '',
       OperationsLOGS: [],
       DentistsLOGS: [],
+      AllConsults: [],
     };
-
+    this.handlePaintDays = this.handlePaintDays.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleButtonClicked = this.handleButtonClicked.bind(this)
   }
 
+  async handlePaintDays() {
+    console.log('I DID')
+    let ArrayForDays = []
+    let ArrayForDaysForUse = []
+
+    this.state.AllConsults
+      .map(consult => (
+        ArrayForDays.push(consult.Day)
+      ))
+    for (let index1 = 0; index1 < ArrayForDays.length; index1++) {
+      const Date = ArrayForDays[index1];
+      const mounths = ['janeiro', 'fevereiro', 'março', 'abril', 'maio',
+        'junho', 'julho', 'agosto',
+        'setembro', 'outubro', 'novembro', 'dezembro']
+      let TrateDay = Date.split('-')
+      if(TrateDay[2] == "01" || TrateDay[2] == "02" || TrateDay[2] == "03" || TrateDay[2] == "04" || TrateDay[2] == "05" || TrateDay[2] == "06" ||TrateDay[2] == "07" || TrateDay[2] == "08" || TrateDay[2] == "09"){
+       TrateDay[2] = TrateDay[2].replace(/^0+/, '')
+      }
+      let GetingMounth = TrateDay[1]
+      switch (GetingMounth) {
+        case '01':
+          GetingMounth = 'janeiro'
+          break;
+        case '02':
+          GetingMounth = 'fevereiro'
+          break;
+        case '03':
+          GetingMounth = 'março'
+          break;
+        case '04':
+          GetingMounth = 'abril'
+          break;
+        case '05':
+          GetingMounth = 'maio'
+          break;
+        case '06':
+          GetingMounth = 'junho'
+          break;
+        case '07':
+          GetingMounth = 'julho'
+          break;
+        case '08':
+          GetingMounth = 'agosto'
+          break;
+        case '09':
+          GetingMounth = 'setembro'
+          break;
+        case '10':
+          GetingMounth = 'outubro'
+          break;
+        case '11':
+          GetingMounth = 'novembro'
+          break;
+        case '12':
+          GetingMounth = 'dezembro'
+          break;
+        default:
+          break;
+      }
+      let DayConverted = `${TrateDay[2]} de ${GetingMounth} de ${TrateDay[0]}`
+      ArrayForDaysForUse.push(DayConverted)
+    }
+    for (let index = 0; index < ArrayForDaysForUse.length; index++) {
+      let elementarray = ArrayForDaysForUse[index]
+      try {
+        let getingdayZ = $('[aria-label="' + elementarray + '"]')[0].parentNode
+      getingdayZ.style.backgroundColor = '#9df9ef';
+      getingdayZ.style.borderRadius = "9px";
+      getingdayZ.style.border = "solid";
+      } catch (error) {
+        console.log("it's ok")
+      }
+    }
+  }
+
+
   handleButtonClicked() {
     this.setState({
       didClick: !this.state.didClick
-    });
+    })
     if (this.state.didClick == true) {
       document.getElementById('FirtTitleCharged').style.display = 'none'
       document.getElementById('FORMX').style.display = 'block'
@@ -51,16 +129,14 @@ class CalendarForm extends Component {
 
   async componentDidMount() {
     CheckAuth()
-
     await Axios.get('http://localhost:8080/SeeAllConsuts', {
       headers: {
         Authorization: localStorage.getItem('authorization')
       }
     })
       .then((response => {
-        console.log(response.data)
+        this.setState({ AllConsults: response.data })
       }))
-
     await fetch("http://localhost:8080/ContultOperations")
       .then(res => res.json())
       .then(
@@ -79,6 +155,7 @@ class CalendarForm extends Component {
           })
         }
       )
+    await this.handlePaintDays()
   }
 
   render() {
@@ -122,12 +199,11 @@ class CalendarForm extends Component {
 
         </div>
         <div className="Content">
-          <div className="Calendar">
+          <div onMouseOver={this.handlePaintDays} className="Calendar">
             <Calendar id="CalendarDays" />
           </div>
           <div className="FormPOST">
             <div id="DaySelected">
-
             </div>
             <div >
               <div id="FirtDivCharged">

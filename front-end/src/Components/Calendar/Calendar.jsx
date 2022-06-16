@@ -9,10 +9,6 @@ function CalendarComponent(props) {
   const [ConsultsArray, onChangeConsults] = useState([])
 
   let ConsultsOnThisDay = []
-  window.onload = function Dale(){
-    let day = '12 de junho de 2022'
-    const getingday = value.getDate(20220609)
-  }
     const ChekingConultsOnThisDay = (e) => {
     
     Axios.post('http://localhost:8080/SeeDayConsult', {
@@ -34,7 +30,7 @@ function CalendarComponent(props) {
   }
   return (
     <div>
-      <Calendar formatDay={} onClickDay={(target) => ChekingConultsOnThisDay(target)} onChange={onChange} value={value} />
+      <Calendar onClickDay={(target) => ChekingConultsOnThisDay(target)} onChange={onChange} value={value} />
       <div className="ReciveDays">
         <div id='TituloRecivD'>Consultas encontradas no dia selecionado:</div>
         <div className='ConsultsOnThisDay'>
