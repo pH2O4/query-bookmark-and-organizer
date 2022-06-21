@@ -39,7 +39,7 @@ const LoginPage = () => {
 
                     <div className="form-group">
                         <label>Password</label>
-                        <input type="Pass" onChange={ChangingValueLogin} name="Pass" className="form-control" placeholder="Enter password" />
+                        <input type="password" onChange={ChangingValueLogin} name="Pass" className="form-control" placeholder="Enter password" />
                     </div>
 
 

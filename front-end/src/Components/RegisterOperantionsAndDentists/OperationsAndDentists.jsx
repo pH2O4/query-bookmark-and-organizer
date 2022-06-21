@@ -18,7 +18,7 @@ class ROAD extends Component {
       Nome: '',
       Email: '',
       Celular: '',
-    };
+    }
     this.handleButtonClickedAdmin = this.handleButtonClickedAdmin.bind(this)
     this.handleButtonClicked = this.handleButtonClicked.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this);

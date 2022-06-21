@@ -61,7 +61,7 @@ const RecoveryPassPage = () => {
                            <input type='password' onChange={ChangingValueRecoveryPass} name="PassRepeat" className="form-control" placeholder="Repeat New password" />
                        </div>
    
-                       <button id="ButtonRecoveryPass" onClick={() => CheckPass()} className="btn btn-dark btn-lg btn-block">Sign in</button>
+                       <button id="ButtonRecoveryPass" onClick={() => CheckPass()} className="btn btn-dark btn-lg btn-block">Mudar Senha</button>
                    </div>
                </div>
            )

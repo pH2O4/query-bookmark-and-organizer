@@ -15,8 +15,10 @@ function CheckAuth () {
         }
         response.data.Pass = ''
         const takingUserId = response.data.id
+        const takingUserName = response.data.Name 
         console.log(localStorage)
-        localStorage.setItem('UserInformation', takingUserId)
+        localStorage.setItem('UserId', takingUserId)
+        localStorage.setItem('UserName', takingUserName)
     })
 }
 
