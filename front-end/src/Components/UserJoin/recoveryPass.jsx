@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import Axios from 'axios'
 import { } from 'react-bootstrap'
 import './Login.css'
+import CheckAuth from '../UserJoin/CheckAuthAllPags'
 
 const RecoveryPassPage = () => {
     const [valuesRecoveryPass, setValuesRecoveryPass] = useState();
@@ -12,7 +13,10 @@ const RecoveryPassPage = () => {
        }));
        document.getElementById("ButtonRecoveryPass").style.display = 'block';
      };
-   
+  window.onload = () => {
+    CheckAuth()
+   console.log('skksak')
+  }
      const RecoveringPass = () => {
        Axios.post( 'http://localhost:8080/Recovery',{
         headers: {

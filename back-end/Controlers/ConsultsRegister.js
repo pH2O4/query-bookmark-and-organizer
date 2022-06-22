@@ -33,7 +33,13 @@ const Consult = await prisma.Consult.findMany({
 }
 
 module.exports.SeeAllConsults = async (req, res) => {
-    const ConsultAllConults = await prisma.Consult.findMany()
+    const ConsultAllConults = await prisma.Consult.findMany({
+        orderBy:[
+            {
+                Time : 'asc',
+            },
+          ]
+    })
     res.send(ConsultAllConults)
 }
 

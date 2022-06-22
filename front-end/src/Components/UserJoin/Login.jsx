@@ -44,7 +44,6 @@ const LoginPage = () => {
 
 
                     <button onClick={() => DoingLogin()} className=" btn-dark btn-lg btn-block">Sign in</button>
-                <p id="forgetPass">Esqueceu sua senha? <a href="/Recovery">Recuperar</a></p>
                 </div>
             </div>
         )

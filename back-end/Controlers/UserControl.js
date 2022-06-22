@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const prisma = new PrismaClient()
 const jwt = require('jsonwebtoken')
 
+
 module.exports.StatusAuth = (req, res) => {
     res.json(req.userInfo)
   }
@@ -61,7 +62,7 @@ module.exports.RecoveryPass = async(req, res) => {
 
           return;
       }
-      expiresIn: '1d'
+      expiresIn: "24h"
       res.set("x-access-token", token)
    res.send(token)
       res.end();

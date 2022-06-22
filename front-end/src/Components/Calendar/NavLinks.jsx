@@ -10,6 +10,11 @@ function NavLinks() {
     const target2 = useRef(null);
     const [show3, setShow3] = useState(false);
     const target3 = useRef(null);
+
+    const Logout = () => {
+        localStorage.setItem('authorization', '')
+    }
+
     return(
         <div className="NAVLINKS">
             <Navbar collapsenselect='true' fixed='top' expand='sm'>
@@ -42,7 +47,7 @@ function NavLinks() {
                                     </Tooltip>
                                 )}
                             </Overlay>
-                            <Nav.Link className="NAVLINK" href="/"><FontAwesomeIcon icon={faArrowRightFromBracket} /></Nav.Link>
+                            <Nav.Link onClick={() => Logout()} className="NAVLINK" href="/"><FontAwesomeIcon icon={faArrowRightFromBracket} /></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

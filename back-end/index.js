@@ -3,7 +3,6 @@ const cors = require('cors')
 const app = express()
 const {PrismaClient} = require('@prisma/client')
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
 
 const UserControl = require('./Controlers/UserControl')
 const ConsultsAndRegisters = require('./Controlers/ConsultsRegister')

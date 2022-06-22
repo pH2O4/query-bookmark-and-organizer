@@ -14,7 +14,7 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    CheckAuth()
+  await  CheckAuth()
     axios.get('http://localhost:8080/SeeAllConsuts', {
       headers: {
         Authorization: localStorage.getItem('authorization')
@@ -38,15 +38,16 @@ class Home extends Component {
     })
   }
   render() {
+    
     const { ConsultObj } = this.state
     return (
       <div className="Home">
         <div className="Header">
           <NavLinks />
         </div>
-        <div className="Content">
+        <div className="ContentHOME">
           {ConsultObj.map(Consult => (
-            <div className="DivConsultsS" key={Consult.id}>
+            <div className="DivConsultsSX" key={Consult.id}>
               <div className = "textDivConsultContent"> <b>Operação:</b> {Consult.Operation}</div>
               <div className = "textDivConsultContent"> <b>Dentista:</b> {Consult.Dentist}</div> 
               <div className = "textDivConsultContent"><b>Time:</b> {Consult.Time}</div>  
