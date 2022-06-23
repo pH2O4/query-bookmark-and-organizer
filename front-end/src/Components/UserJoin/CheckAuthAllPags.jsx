@@ -14,10 +14,12 @@ function CheckAuth () {
      console.log(response.data)
         }
         response.data.Pass = ''
-        const takingUserName = response.data.Name 
+        const takingUserName = response.data.Name
+        const takingFunction = response.data.Function 
         const takingUserID = response.data.id
         const takingSituasionPassowrd = response.data.IsHeSheNeedTradePass
         console.log(localStorage)
+        localStorage.setItem('Function', takingFunction)
         localStorage.setItem('passSituation', takingSituasionPassowrd)
         localStorage.setItem('id', takingUserID)
         localStorage.setItem('UserName', takingUserName)

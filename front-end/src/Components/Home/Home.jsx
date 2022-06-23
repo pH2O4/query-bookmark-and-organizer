@@ -30,7 +30,7 @@ class Home extends Component {
         let dataAtual = ano + '-' + mes + '-' + dia;
         for (let indexX = 0; indexX < response.data.length; indexX++) {
           const ConsultObJs = response.data[indexX]
-          if (ConsultObJs.Dentist == localStorage.getItem('UserName') & ConsultObJs.Day == dataAtual) {
+          if (ConsultObJs.Dentist == localStorage.getItem('UserName') & ConsultObJs.Day == dataAtual & localStorage.getItem('Function') == 'Dentista') {
             arrayForSaveState.push(ConsultObJs)
           }
         }
