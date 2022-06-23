@@ -2,6 +2,8 @@ import { React, useState } from "react";
 import Axios from 'axios'
 import { } from 'react-bootstrap'
 import './Login.css'
+import CheckAuth from '../UserJoin/CheckAuthAllPags'
+
 
 const LoginPage = () => {
  const [valuesLogin, setValuesLogin] = useState();
@@ -12,15 +14,15 @@ const LoginPage = () => {
     }))
   }
 
-  const DoingLogin = () => {
+  const DoingLogin = async () => {
     Axios.post('http://localhost:8080/Login',{
         Email: valuesLogin.Email,
         Pass: valuesLogin.Pass
     } ).then((response) => {
      if(response.data){
       localStorage.setItem('authorization', response.data  )
+      CheckAuth()
       window.location.href ='http://localhost:3000/Home'
-    console.log(response.data)
      }else{
        window.alert('Please, chek your login informations')
      }
