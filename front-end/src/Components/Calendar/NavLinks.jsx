@@ -1,29 +1,35 @@
 import { React, Component, useState, useRef } from "react";
 import { Navbar, Nav, Container, Overlay, Tooltip } from 'react-bootstrap'
-import { faTooth, faArrowRightFromBracket, faCalendarCheck, faHouse, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faTooth, faArrowRightFromBracket, faCalendarCheck, faHouse, faHome, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function NavLinks() {
-    const [show, setShow] = useState(false);
-    const target = useRef(null);
-    const [show2, setShow2] = useState(false);
-    const target2 = useRef(null);
-    const [show3, setShow3] = useState(false);
-    const target3 = useRef(null);
-
+    const [show, setShow] = useState(false)
+    const target = useRef(null)
+    const [show2, setShow2] = useState(false)
+    const target2 = useRef(null)
+    const [show3, setShow3] = useState(false)
+    const target3 = useRef(null)
+    const [show4, setShow4] = useState(false)
+    const target4 = useRef(null)
     const Logout = () => {
         localStorage.setItem('authorization', '')
     }
-
-    return(
+    const checkingIfUserAdmin = () => {
+        if (localStorage.getItem('Admin') == 'false') {
+            document.getElementById('NavLinkUserADmin').style.display = 'none'
+        }
+    }
+    window.onload = checkingIfUserAdmin()
+    return (
         <div className="NAVLINKS">
             <Navbar collapsenselect='true' fixed='top' expand='sm'>
                 <Container>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav>
-                        <Nav.Link ref={target3} onMouseEnter={() => setShow3(!show3)} onMouseLeave={() => setShow3(!show3)} className="NAVLINK" href="/Home"><FontAwesomeIcon icon={faHome} /></Nav.Link>
-                        <Overlay target={target3.current} show={show3} placement="right">
+                            <Nav.Link ref={target3} onMouseEnter={() => setShow3(!show3)} onMouseLeave={() => setShow3(!show3)} className="NAVLINK" href="/Home"><FontAwesomeIcon icon={faHome} /></Nav.Link>
+                            <Overlay target={target3.current} show={show3} placement="right">
                                 {(props) => (
                                     <Tooltip id="overlay-example" {...props}>
                                         Home
@@ -44,6 +50,13 @@ function NavLinks() {
                                 {(props) => (
                                     <Tooltip id="overlay-example" {...props}>
                                         Calendário
+                                    </Tooltip>
+                                )}
+                            </Overlay><Nav.Link id="NavLinkUserADmin" ref={target4} onMouseEnter={() => setShow4(!show4)} onMouseLeave={() => setShow4(!show4)} className="NAVLINK" href="/SistemUsers"><FontAwesomeIcon icon={faUsers} /></Nav.Link>
+                            <Overlay target={target4.current} show={show4} placement="right">
+                                {(props) => (
+                                    <Tooltip id="overlay-example" {...props}>
+                                        Administrar Usuários
                                     </Tooltip>
                                 )}
                             </Overlay>

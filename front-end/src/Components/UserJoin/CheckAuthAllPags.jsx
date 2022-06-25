@@ -17,8 +17,10 @@ function CheckAuth () {
         const takingUserName = response.data.Name
         const takingFunction = response.data.Function 
         const takingUserID = response.data.id
+        const takingAdminOrNot = response.data.Admin
         const takingSituasionPassowrd = response.data.IsHeSheNeedTradePass
         console.log(localStorage)
+        localStorage.setItem('Admin',  takingAdminOrNot)
         localStorage.setItem('Function', takingFunction)
         localStorage.setItem('passSituation', takingSituasionPassowrd)
         localStorage.setItem('id', takingUserID)

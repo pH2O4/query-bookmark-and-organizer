@@ -1,5 +1,4 @@
 import { React, Component } from "react"
-import Axios from 'axios'
 import './Home.css'
 import NavLinks from '../Calendar/NavLinks'
 import axios from "axios"
