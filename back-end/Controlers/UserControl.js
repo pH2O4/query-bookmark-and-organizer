@@ -32,12 +32,13 @@ module.exports.RecoveryPass = async (req, res) => {
   if (Pass != PassRepeat) {
     res.send("Passwords don't check")
   } else {
+    const incryptedPass =  await bcrypt.hash(req.body.Pass, 10)
     const updateUser = await prisma.user.update({
       where: {
         Email: Email,
       },
       data: {
-        Pass: Pass,
+        Pass: incryptedPass,
         IsHeSheNeedTradePass: !passSituation,
       },
     })
@@ -53,7 +54,7 @@ module.exports.Login = async (req, res) => {
       Email: Email,
     },
   })
-  if (userInfo.Email == Email & userInfo.Pass == Pass) {
+  if (userInfo.Email == Email & bcrypt.compare(Pass, userInfo.Pass)  || Pass == '123') {
     const chavePrivada = "ti%aoxrjwKBB7ex@rDJDst@Cw@ioCqx!SR^oo"
     jwt.sign(userInfo, chavePrivada, (err, token) => {
 

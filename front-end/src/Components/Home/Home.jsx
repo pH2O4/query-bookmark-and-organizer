@@ -3,6 +3,7 @@ import Axios from 'axios'
 import './Home.css'
 import NavLinks from '../Calendar/NavLinks'
 import axios from "axios"
+import CheckAuth from '../UserJoin/CheckAuthAllPags'
 
 class Home extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Home extends Component {
   }
 
   async componentDidMount() {
+    CheckAuth()
     if(localStorage.getItem('passSituation') == 'true') {
       window.alert('Provavelmente esse é seu primeiro acesso, você precisa criar uma nova senha, você está sendo redirecionado')
       window.location.href = 'http://localhost:3000/Recovery'
@@ -30,7 +32,10 @@ class Home extends Component {
         let dataAtual = ano + '-' + mes + '-' + dia;
         for (let indexX = 0; indexX < response.data.length; indexX++) {
           const ConsultObJs = response.data[indexX]
-          if (ConsultObJs.Dentist == localStorage.getItem('UserName') & ConsultObJs.Day == dataAtual & localStorage.getItem('Function') == 'Dentista') {
+          if(ConsultObJs.Dentist == localStorage.getItem('Function') != 'Dentist' & ConsultObJs.Day == dataAtual){
+            arrayForSaveState.push(ConsultObJs)
+          }
+          else if(ConsultObJs.Dentist == localStorage.getItem('UserName') & ConsultObJs.Day == dataAtual & localStorage.getItem('Function') == 'Dentista') {
             arrayForSaveState.push(ConsultObJs)
           }
         }

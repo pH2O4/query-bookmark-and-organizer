@@ -20,8 +20,8 @@ const LoginPage = () => {
         Pass: valuesLogin.Pass
     } ).then((response) => {
      if(response.data){
+      console.log(response.data)
       localStorage.setItem('authorization', response.data  )
-      CheckAuth()
       window.location.href ='http://localhost:3000/Home'
      }else{
        window.alert('Please, chek your login informations')
