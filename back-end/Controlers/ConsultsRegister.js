@@ -1,6 +1,11 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
+module.exports.SeeAllUsers = async (req, res) =>{
+const AllUsers = await prisma.User.findMany()
+res.send(AllUsers)
+}
+
 module.exports.Consult = async (req, res) => {
     const { Operations, Dentist, Date, Time, Client } = req.body
     console.log(Operations, Dentist, Date, Time, Client)
