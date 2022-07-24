@@ -9,6 +9,11 @@
     
   }
 
+#EditJustRigthData{
+background: none;
+border: none;
+color: black;
+}
 
 .cssRowConsults{
   display: flex;

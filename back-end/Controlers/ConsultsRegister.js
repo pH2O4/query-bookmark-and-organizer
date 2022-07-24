@@ -7,13 +7,18 @@ res.send(AllUsers)
 }
 
 module.exports.SeeConsultById = async(req, res) => {
-    const { idConsult} = req.body
+    try {
+          const { idConsult} = req.body
     const ConsultByID =  await prisma.Consult.findUnique({
         where: {
           id: idConsult,
         },
       })
     res.send(ConsultByID)
+    } catch (error) {
+        console.log(error)
+    }
+  
 }
 
 module.exports.Consult = async (req, res) => {
