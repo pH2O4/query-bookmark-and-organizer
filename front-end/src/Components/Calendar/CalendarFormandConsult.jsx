@@ -199,7 +199,7 @@ class CalendarForm extends Component {
 
         </div>
         <div className="Content">
-          <div onMouseOver={this.handlePaintDays} className="Calendar">
+          <div onMouseLeave={this.handlePaintDays} className="Calendar">
             <Calendar id="CalendarDays" />
           </div>
           <div className="FormPOST">

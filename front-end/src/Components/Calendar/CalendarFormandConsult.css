@@ -9,6 +9,40 @@
     
   }
 
+
+.cssRowConsults{
+  display: flex;
+  align-items: center;
+  
+}
+
+#ButtonFormUpdateDatasConsults{
+ margin-top: 12px;
+
+}
+#CloseFormUpdateDataConsults{
+  background: none;
+  border: none;
+  color: black;
+}
+#TitleFormUpdateDatasConsults{
+  font-weight: 600;
+  font-size: 19px;
+}
+#FormUpdateDatasConsults{
+  margin-bottom: 25px;
+  display: none;
+}
+
+#EditButtonConsults{
+  display: flex;
+  font-size: 19px;
+  margin-right: 20px;
+  background: none;
+  border: none;
+  color: black;
+}
+
 .ConsultsOnThisDay{
 width: 450px;
 } 
@@ -43,7 +77,9 @@ margin-top: 25px;
   flex-direction: row;
 
 }
-
+.Calendar{
+  margin-top: 50px;
+}
 #FORMX{
   display: none;
 }
@@ -55,6 +91,7 @@ margin-top: 10px;
 }
 .FormPOST{
   width: 600px;
+  margin-top: 50px;
 }
 .SomeConsult{
 display: none;

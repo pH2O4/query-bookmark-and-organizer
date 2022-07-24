@@ -6,6 +6,16 @@ const AllUsers = await prisma.User.findMany()
 res.send(AllUsers)
 }
 
+module.exports.SeeConsultById = async(req, res) => {
+    const { idConsult} = req.body
+    const ConsultByID =  await prisma.Consult.findUnique({
+        where: {
+          id: idConsult,
+        },
+      })
+    res.send(ConsultByID)
+}
+
 module.exports.Consult = async (req, res) => {
     const { Operations, Dentist, Date, Time, Client } = req.body
     console.log(Operations, Dentist, Date, Time, Client)

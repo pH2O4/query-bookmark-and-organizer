@@ -22,6 +22,7 @@ app.post('/RegisterConsult', middlewareCheckJWT, ConsultsAndRegisters.Consult)
 app.post('/SeeDayConsult', middlewareCheckJWT, ConsultsAndRegisters.SeeContultForDay)
 app.get('/SeeAllConsuts', middlewareCheckJWT, ConsultsAndRegisters.SeeAllConsults)
 app.get('/SeeAllUsers', middlewareCheckJWT, ConsultsAndRegisters.SeeAllUsers)
+app.get('/GetConsultById', middlewareCheckJWT, ConsultsAndRegisters.SeeConsultById)
 
 //Register Detais
 app.post('/RegisteroOperation', middlewareCheckJWT, ConsultsAndRegisters.Operations)
