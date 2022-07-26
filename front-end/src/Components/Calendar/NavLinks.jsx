@@ -17,7 +17,7 @@ function NavLinks() {
     }
     const checkingIfUserAdmin = () => {
         if (localStorage.getItem('Admin') == 'false') {
-            document.getElementById('NavLinkUserADmin').style.display = 'none'
+          //  document.getElementById('NavLinkUserADmin').style.display = 'none';
         }
     }
     window.onload = checkingIfUserAdmin()
@@ -52,7 +52,7 @@ function NavLinks() {
                                         Calendário
                                     </Tooltip>
                                 )}
-                            </Overlay><Nav.Link id="NavLinkUserADmin" ref={target4} onMouseEnter={() => setShow4(!show4)} onMouseLeave={() => setShow4(!show4)} className="NAVLINK" href="/SistemUsers"><FontAwesomeIcon icon={faUsers} /></Nav.Link>
+                            </Overlay><Nav.Link id='NavLinkUserADmin' ref={target4} onMouseEnter={() => setShow4(!show4)} onMouseLeave={() => setShow4(!show4)} className="NAVLINK" href="/SistemUsers"><FontAwesomeIcon icon={faUsers} /></Nav.Link>
                             <Overlay target={target4.current} show={show4} placement="right">
                                 {(props) => (
                                     <Tooltip id="overlay-example" {...props}>

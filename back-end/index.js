@@ -23,12 +23,14 @@ app.post('/SeeDayConsult', middlewareCheckJWT, ConsultsAndRegisters.SeeContultFo
 app.get('/SeeAllConsuts', middlewareCheckJWT, ConsultsAndRegisters.SeeAllConsults)
 app.get('/SeeAllUsers', middlewareCheckJWT, ConsultsAndRegisters.SeeAllUsers)
 app.post('/GetConsultById', middlewareCheckJWT, ConsultsAndRegisters.SeeConsultById)
-
+app.post('/UpdateConsultDatas', middlewareCheckJWT, ConsultsAndRegisters.UpdateConsultDatas)
 //Register Detais
 app.post('/RegisteroOperation', middlewareCheckJWT, ConsultsAndRegisters.Operations)
 app.get('/ContultOperations', ConsultsAndRegisters.OperationsConsult)
 app.post('/RegisteroWokers', middlewareCheckJWT, ConsultsAndRegisters.Workers)
 app.get('/ConsultRegisteroWokers',  ConsultsAndRegisters.ConsultWorkers)
+app.post('/UpdateUsersDatas',  middlewareCheckJWT, ConsultsAndRegisters.UpdateUsersDatas)
+app.post('/TradeAdminAndPassStatus',middlewareCheckJWT, ConsultsAndRegisters.TradeAdminAndPassStatus)
 const PORT = 8080;
 app.listen(PORT, () => {
     console.log(`Running in http://localhost:${PORT}`)

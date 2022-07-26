@@ -8,7 +8,30 @@
     background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
   }
+  #TitleForm{
+    font-weight: 600;
+    font-size: 19px;
+  }
+  .ButtonOpenForJoinData{
+    color: black;
+    border: none;
+    background: none;
+  }
+  
+  #AlterarDadosButton{
+    margin: 15px 0px;
+  }
+
+#FormUpddateUsersInfo{
+margin-bottom: 25px;
+display: none;
+}
 
   .RecivingAllUsers{
     margin: 120px;
+  }
+
+  #buttonList{
+    border: none;
+    background: none;
   }

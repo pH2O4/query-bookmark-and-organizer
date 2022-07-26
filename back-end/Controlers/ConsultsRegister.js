@@ -1,30 +1,54 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
-module.exports.SeeAllUsers = async (req, res) =>{
-const AllUsers = await prisma.User.findMany()
-res.send(AllUsers)
+module.exports.SeeAllUsers = async (req, res) => {
+    const AllUsers = await prisma.User.findMany()
+    res.send(AllUsers)
 }
 
-module.exports.SeeConsultById = async(req, res) => {
+module.exports.SeeConsultById = async (req, res) => {
     try {
-          const { idConsult} = req.body
-    const ConsultByID =  await prisma.Consult.findUnique({
-        where: {
-          id: idConsult,
-        },
-      })
-    res.send(ConsultByID)
+        const { idConsult } = req.body
+        const ConsultByID = await prisma.Consult.findUnique({
+            where: {
+                id: idConsult,
+            },
+        })
+        res.send(ConsultByID)
     } catch (error) {
         console.log(error)
     }
-  
+
 }
+
+module.exports.UpdateConsultDatas = async (req, res) => {
+    const { DentistT, OperationN, TimeE, ClientT, DayY, IdD } = req.body
+    const converIdToInt = parseInt(IdD)
+    try {
+        const updateConsult = await prisma.Consult.update({
+            where: {
+                id: converIdToInt,
+            },
+            data: {
+                id: converIdToInt,
+                Operation: OperationN,
+                Day: DayY,
+                Time: TimeE,
+                Client: ClientT,
+                Dentist: DentistT
+            },
+        })
+        res.send('Consulta Atualizada Com Sucesso!')
+    } catch (error) {
+        res.send('Error: Verifique suas informações e tente novamente')
+    }
+}
+
+
 
 module.exports.Consult = async (req, res) => {
     const { Operations, Dentist, Date, Time, Client } = req.body
-    console.log(Operations, Dentist, Date, Time, Client)
-     const Consult = await prisma.Consult.create({
+    const Consult = await prisma.Consult.create({
         data: {
             Operation: Operations,
             Day: Date,
@@ -36,29 +60,61 @@ module.exports.Consult = async (req, res) => {
     res.send('Consulta marcada com sucesso!')
 }
 
+module.exports.TradeAdminAndPassStatus = async(req, res) => {
+    const { Admin, Pass, id } = req.body
+    console.log(Admin, Pass, id)
+    const convertId = parseInt(id)
+    const updateUser = await prisma.User.update({
+        where: {
+            id: convertId,
+        },
+        data: {
+            IsHeSheNeedTradePass: Pass,
+            Admin: Admin
+        },
+    })
+    res.send('Usuário Alterado Com Sucesso')
+}
+module.exports.UpdateUsersDatas = async (req, res) => {
+    const { Email, Name, Cellphone, Function, id } = req.body
+    const convertId = parseInt(id)
+    const updateUser = await prisma.User.update({
+        where: {
+            id: convertId,
+        },
+        data: {
+            Name: Name,
+            Email: Email,
+            Cellphone: Cellphone,
+            Function: Function
+        },
+    })
+    res.send('Usuário Alterado Com Sucesso')
+}
+
 module.exports.SeeContultForDay = async (req, res) => {
-const {Day} = req.body
-const slitDay = Day.split('T')
-const dayTrated = slitDay[0]
-const Consult = await prisma.Consult.findMany({
-    where: {
-        Day: dayTrated
-    },
-  })
-  if(Consult.length > 0){
-    res.send(Consult)
-  }else{
-    res.send("Nenhuma Consulta Econtrada nesse dia")
-  }
+    const { Day } = req.body
+    const slitDay = Day.split('T')
+    const dayTrated = slitDay[0]
+    const Consult = await prisma.Consult.findMany({
+        where: {
+            Day: dayTrated
+        },
+    })
+    if (Consult.length > 0) {
+        res.send(Consult)
+    } else {
+        res.send("Nenhuma Consulta Econtrada nesse dia")
+    }
 }
 
 module.exports.SeeAllConsults = async (req, res) => {
     const ConsultAllConults = await prisma.Consult.findMany({
-        orderBy:[
+        orderBy: [
             {
-                Time : 'asc',
+                Time: 'asc',
             },
-          ]
+        ]
     })
     res.send(ConsultAllConults)
 }
