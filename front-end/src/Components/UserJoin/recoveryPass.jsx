@@ -35,6 +35,8 @@ const RecoveryPassPage = () => {
         window.alert(`${response.data}`)
       } else {
         window.alert(`${response.data}`)
+        console.log(response.data)
+        localStorage.setItem("passSituation", false)
         window.location.href = 'http://localhost:3000/'
       }
 

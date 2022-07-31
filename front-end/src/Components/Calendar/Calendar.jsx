@@ -45,7 +45,7 @@ function CalendarComponent(props) {
       }
     }).then((response) => {
       window.alert(`${response.data}`)
-      window.reload()
+      window.location.reload()
     })
   }
 

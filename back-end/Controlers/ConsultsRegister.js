@@ -180,18 +180,18 @@ module.exports.Workers = async (req, res) => {
         res.send('Email já cadastrado')
     } else {
         try {
-            const CelularConvert = parseInt(Celular)
             const User = await prisma.User.create({
                 data: {
                     Email: Email,
                     Name: Nome,
-                    Cellphone: CelularConvert,
+                    Cellphone: Celular,
                     Function: FunçãoFuncionário,
                     Admin: Admin,
                 },
             })
             res.send("Funcionário cadastrado com sucesso!")
         } catch (error) {
+            console.log(error)
             res.send('Houve um erro de digitação por favor verifique a ortografia dos campos')
         }
     }
